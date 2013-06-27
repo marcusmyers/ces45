@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="controls-contain">
+        <div class="controls">
+            <div class="controls-row">
+            	<div>
+                    <a href="#" data-key="37" class="btn dir"><span class="arrow arrow-l">&lt;</span></a>
+                    <a href="#" data-key="39" class="btn dir"><span class="arrow arrow-r">&gt;</span></a>
+                </div>
+                <div>
+                    <a href="#" data-goto="0" class="btn btn-small">&lt;&lt;</a>
+                </div>
+		<div>
+		    <a href="#" data-key="video1" class="btn video">VID1</a>
+		    <a href="#" data-key="video2" class="btn video">VID2</a>
+		    <a href="#" data-key="video3" class="btn video">VID3</a>	
+		</div>
+                <div>
+                    <a href="#" data-goto="overview" class="btn btn-small">overview</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-1.9.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function(){
+		var socket = io.connect('http://10.20.15.77:3000');
+
+		$('a.dir').click(function(){
+			socket.emit('message',$(this).attr('data-key'));
+		});
+
+		$('a.video').click(function(){
+			socket.emit('video', $(this).attr('data-key'));
+		});
+	});
+    </script>
+
+</body>
+</html>

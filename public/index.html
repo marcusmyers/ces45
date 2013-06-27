@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+    <head>
+	<title>Career Day</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href='http://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href="/css/default.css" rel='stylesheet' type='text/css'>
+	<link href='/css/impress-demo.css' rel='stylesheet' type='text/css'>
+    </head>
+
+    <body>
+	<div id="clouds">
+		<div class="cloud x1"></div>
+		<!-- Time for multiple clouds to dance around -->
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+		<div class="cloud x6"></div>
+		<div class="cloud x7"></div>
+		<div class="cloud x8"></div>
+                <div class="cloud x9"></div>
+                <div class="cloud x10"></div>
+                <div class="cloud x11"></div>
+                <div class="cloud x11"></div>
+                <div class="cloud x12"></div>
+                <div class="cloud x13"></div>
+                <div class="cloud x14"></div>
+                <div class="cloud x15"></div>
+                <div class="cloud x16"></div>
+		
+	</div>
+	<div id="impress">
+		<div id="start" class="step slide" data-x="-1000" data-y="-1500">
+			<q><br/><br/>Welcome!</q>
+		</div>
+		<div id="slide2" class="step slide" data-x="0" data-y="-1500">
+			<h1> Who I am</h1>
+			<hr>
+			<br/>
+			<q>Mark Myers<br/>Technology Director</q>
+		</div>
+		
+		<div id="slide3" class="step slide" data-x="1000" data-y="-1500">
+			<h1> What I do at the district</h1>
+                        <hr>
+			<q>Service 2200+ Users<br/><br/>Service 1800+ Devices<br/><br/>Technology Planning for future of the district</q>	
+		</div>
+		<div id="slide4" class="step" data-x="0" data-y="0" data-scale="4">
+			<h1>What are devices?</h1>
+		</div>
+		
+		<div id="tiny" class="step" data-x="100" data-y="100" data-z="-3000" data-rotate="300" data-scale="1">
+        		<p><h1>Computers</h1> <h2>Monitors</h2> <h2>Projectors</h2> <h3>SMARTBoards</h3> <h3>iPads</h3></p>
+    		</div>
+
+		<div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+        		<p>What does the <strong>future</strong><br>
+			hold for <strong>technology</strong> at<br/>
+			Napoleon Area City Schools??</p>
+	    	</div>
+		
+		<div id="gdocs" class="step" data-x="4100" data-y"1500" data-rotate="180" data-scale="6">
+			<p>Google Drive</p>
+		</div>
+
+		<div id="gdocsvideo" class="step" data-x="4100" data-y="-1500" data-rotate="180" data-z="-100" data-rotate-x="-40" data-scale="3">
+			<video src="/Go_Google_Hall_and_Oates.mp4" autoplay controls id="video1"></video>
+		</div>
+
+		<div id="dtext" class="step" data-x="" data-y="" data-rotate="" data-scale"">
+			<p>Digital Textbooks</p><br/>
+			<div id="magazine">
+				<div><span class="text">Page 1</span></div>
+				<div><span class="text">Page 2</span></div>
+				<div><span class="text">Page 3</span></div>
+                                <div><span class="text">Page 4</span></div>
+                                <div><span class="text">Page 5</span></div>
+			</div>
+
+		</div>		
+
+		<div id="leap" class="step" data-x="4100" data-y="2000" data-scale="6">
+			<video src="/Introducing_the_Leap_Motion.mp4" autoplay controls id="video2"></video>				
+		</div>
+
+		<div id="codeorgvid" class="step" data-x="4100" data-y="6000" data-rotate="180" data-scale="6">
+                        <video src="/Code_1_min.mp4" autoplay controls id="video3"></video>
+                </div>
+		
+
+		<div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    		</div>
+
+	</div>
+	<script type="text/javascript" src="/js/impress.js"></script>
+	<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="/js/turn.js"></script>
+	<script type="text/javascript">
+	$('#magazine').turn({gradients: true, acceleration: true});
+	</script>
+	<!-- Control Deck -->
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+                var socket = io.connect('http://10.20.15.77:3000');
+                impress().init();
+                socket.on('pres', function(data){
+                        if (data === '37')   impress().prev();
+                        else if(data === '39') impress().next();
+                });
+
+		socket.on('video1', function(data){
+			var video = document.getElementById('video1');
+			video.play();
+		});
+
+		socket.on('video2', function(data){
+                        var video1 = document.getElementById('video2');
+                        video1.play();
+                });
+
+		socket.on('video3', function(data){
+                        var video2 = document.getElementById('video3');
+                        video2.play();
+                });
+        });
+	</script>
+    </body>
+</html>
